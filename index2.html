@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Conditional Rules の テスト その2</title>
+
+	<meta name="viewport" content="width=device-width">
+
+	<style>
+		main{
+			width: 320px;
+			margin: 0 auto;
+			display: block;
+		}
+
+		p{
+			padding: 12px;
+			font-size: 14px;
+			background-color: #E0E0E0;
+		}
+
+		#message1
+		{
+			display: none;
+		}
+
+		@supports ( -webkit-mask-image: url('URL') ){
+			#message1 { display: block; }
+			#message2, #message3 { display: none; }
+		}
+
+		@supports not ( -webkit-mask-image: url('URL') ){
+			#message1, #message3 {
+				display: none;
+			}
+			#message2{
+				display: block;
+			}
+		}
+
+		#mask{
+    		-webkit-mask-image: url('mask.png');
+		    -webkit-mask-repeat:no-repeat;
+		    -webkit-mask-position:center center;
+		    -webkit-mask-size:320px 180px;
+
+			mask-image: url('mask.png');
+		    mask-repeat: no-repeat;
+		    mask-position: center center;
+		    mask-size:320px 180px;
+		}
+	</style>
+
+</head>
+<body>
+	<main>
+		<p id="message1">-webkit-mask-image をばっちりサポート！</p>
+		<p id="message2">-webkit-mask-image をサポートしてないよー</p>
+		<p id="message3">@supports (Conditional Rules) をサポートしてないよー</p>
+		<img src="bg.jpg" alt="スカイツリー" width="320" height="180" id="mask">	
+	</main>
+</body>
+</html>
